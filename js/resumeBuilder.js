@@ -15,7 +15,7 @@ var bio = {
     "location": "Riyadh"
   },
   "skills": [
-    "Developer","photographer"
+    "Developer","photographer", "public Speaking"
   ]
 }
 
@@ -52,18 +52,18 @@ var bio = {
 var projects = {
   "projects":[
     {
-      "title":"test Project",
-      "date":"2017",
-      "description": "here just to write dummy desc",
+      "title":"Chocoholics",
+      "date":"2015",
+      "description": "A clinic application that helps patients who are addicted to chocolate",
       "images":[
         "images/197x148.gif",
         "images/197x148.gif"
       ]
     },
     {
-      "title":"test Project2",
-      "date":"2017",
-      "description": "here just to write dummy desc",
+      "title":"2 Hands",
+      "date":"2016",
+      "description": "A volunteering social media for people to find volunteering opportunities around them",
       "images":[
         "images/197x148.gif",
         "images/197x148.gif"
@@ -135,13 +135,22 @@ $("#header").append(formattedBioPic);
 $("#header").append(formattedWelcomMsg);
 
 //skills:
-if (bio.skills.length > 0){
-  $("#header").append(HTMLskillsStart);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[0]);
-  $("#skills").append(formattedSkills);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[1]);
-  $("#skills").append(formattedSkills);
+// if (bio.skills.length > 0){
+//   $("#header").append(HTMLskillsStart);
+//   var formattedSkills = HTMLskills.replace("%data%", bio.skills[0]);
+//   $("#skills").append(formattedSkills);
+//   var formattedSkills = HTMLskills.replace("%data%", bio.skills[1]);
+//   $("#skills").append(formattedSkills);
+// }
+
+function displaySkills(){
+    $("#header").append(HTMLskillsStart);
+    for(skill in bio.skills){
+        var formattedSkills = HTMLskills.replace("%data%", bio.skills[skill]);
+        $("#skills").append(formattedSkills);
+    }
 }
+displaySkills()
 
 //jobs:
 function displayWork(){
@@ -201,9 +210,9 @@ function displayEducation(){
       }
     }
   }
+  //prepend
+  $("#education").append(HTMLonlineClasses);
   for(online in education.onlineCourses){
-    $("#education").append(HTMLonlineClasses);
-
     var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[online].title);
     $(".education-entry:last").append(formattedOnlineTitle);
 
